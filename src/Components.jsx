@@ -13,7 +13,7 @@ function Tok({tok, weight}) {
 }
 
 function AtomComponent({atom_idx, atom_weight=false}) {
-    const [data, setData] = useState([['Loading...', 1.008]])
+    const [data, setData] = useState([['', 1.008]])
     const [maxWeight, setMaxWeight] = useState(255)
 
     useEffect(() => {
@@ -57,7 +57,7 @@ function AtomComponent({atom_idx, atom_weight=false}) {
 function CodeComponent({codeStringCandidate=' hello'}) {
     const [codeStr, setCodeStr] = useState(codeStringCandidate)
     const [codeIdx, setCodeIdx] = useState('')
-    const [codeData, setCodeData] = useState([{atom: 'Loading...', weight: 255.}])
+    const [codeData, setCodeData] = useState([{atom: '', weight: 255.}])
     const [maxWeight, setMaxWeight] = useState(255)
     const [atomsRendered, setAtomsRendered] = useState(0)
     const [totalAtoms, setTotalAtoms] = useState(100)
