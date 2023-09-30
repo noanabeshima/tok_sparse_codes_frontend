@@ -3,7 +3,7 @@ import './Tok.css'
 
 
 function Tok({tok, weight}) {
-    let processedTok = tok.replace(/ /g, '○').replace(/\n/g, '↵');
+    let processedTok = tok.replace(/ /g, '∘').replace(/\n/g, '↵');
     const url = window.location.href.split('/').slice(0, -2).join('/') + '/code/' + tok
     return (
         <span 
@@ -12,7 +12,7 @@ function Tok({tok, weight}) {
 }
 
 function AtomComponent({atom_idx, atom_weight=false}) {
-    const [data, setData] = useState([['', 1.008]])
+    const [data, setData] = useState([])
     const [maxWeight, setMaxWeight] = useState(255)
 
     useEffect(() => {
@@ -57,9 +57,6 @@ function CodeComponent({codeStringCandidate=' hello'}) {
     const [codeStr, setCodeStr] = useState(codeStringCandidate)
     const [codeIdx, setCodeIdx] = useState('')
     const [codeData, setCodeData] = useState([{atom: '', weight: 255.}])
-    const [maxWeight, setMaxWeight] = useState(255)
-    const [atomsRendered, setAtomsRendered] = useState(0)
-    const [totalAtoms, setTotalAtoms] = useState(100)
 
     useEffect(() => {
         const apiURL = "https://tok-embed-nnmf-api-489e56c40ef7.herokuapp.com/code_str/"+codeStr
@@ -74,9 +71,6 @@ function CodeComponent({codeStringCandidate=' hello'}) {
                 setCodeStr(data['tok_str'])
                 setCodeIdx(data['tok_id'])
                 setCodeData(data['results'])
-                //length of data['results]
-                setTotalAtoms(data['results'].length)
-                setMaxWeight(data['results'][0][-1])
             })
             .catch(error => {
                 console.error('There has been a problem with your fetch operation:', error)
@@ -89,7 +83,6 @@ function CodeComponent({codeStringCandidate=' hello'}) {
             <h2 style={{'textAlign': 'left'}}>"{codeStr}"</h2>
             {codeData.map((tuple, idx) => {
                 return (
-                    // <span key={idx}>{dict['atom']}</span>
                     <AtomComponent key={idx} atom_idx={tuple[0]} atom_weight={tuple[1]}/>
                 )
             })}
