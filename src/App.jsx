@@ -34,9 +34,6 @@ function AtomComponentWrapper() {
   
   // Convert to number and validate
   let atomId = Number(id);
-  if (isNaN(atomId) || atomId < 1 || atomId > 1000) {
-    return <div>Invalid Atom ID!</div>;
-  }
   
   return <AtomComponent atom_idx={atomId} />;
 }
