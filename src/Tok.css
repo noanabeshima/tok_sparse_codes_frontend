@@ -1,0 +1,10 @@
+span > a {
+    text-decoration: none; /* Removes the underline from links */
+    color: inherit; /* Inherits the color of the parent element (span) */
+    cursor: pointer; /* To keep the hand pointer on hover */
+}
+
+span > a:hover {
+    text-decoration: none;
+    color: inherit;
+}
