@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import './Tok.css'
+import SearchBar from './SearchBar.jsx'
 
 
 function Tok({tok, weight}) {
     let processedTok = tok.replace(/ /g, '∘').replace(/\n/g, '↵');
     const url = window.location.href.split('/').slice(0, -2).join('/') + '/code/' + tok
     return (
-        <span 
-            style={{backgroundColor: `rgba(135,206,250,${Math.min(0.6*weight, 1)})`, border: '0.3px solid black', padding: '0.3px'}}> <a href={url}>{processedTok}</a></span>
+        <span> <span 
+            style={{backgroundColor: `rgba(135,206,250,${Math.min(0.6*weight, 1)})`, border: '0.3px solid black', padding: '0.3px'}}><a href={url}>{processedTok}</a></span></span>
     )
 }
 
@@ -17,7 +18,6 @@ function AtomComponent({atom_idx, atom_weight=false}) {
 
     useEffect(() => {
         const apiURL = "https://tok-embed-nnmf-api-489e56c40ef7.herokuapp.com/atom/"+atom_idx+'?k=400&lowest_ratio=0.18'
-        // console.log('Fetching from: ', apiURL)
         fetch(apiURL)
             .then(response => {
                 if (!response.ok) {
@@ -43,7 +43,6 @@ function AtomComponent({atom_idx, atom_weight=false}) {
             <div style={{width: '100%', textAlign: 'left'}}>
                 {data.map((info, idx) => {
                     return (
-                        // <span key={idx}>{dict['tok']}</span>
                         <Tok key={idx} tok={info[0]} weight={info[1]/maxWeight} />
                     )
                 })}
@@ -80,6 +79,8 @@ function CodeComponent({codeStringCandidate=' hello'}) {
 
     return (
         <div style={{width: '100%', textAlign: 'left'}}>
+        <SearchBar/>
+        
             <h2 style={{'textAlign': 'left'}}>"{codeStr}"</h2>
             {codeData.map((tuple, idx) => {
                 return (

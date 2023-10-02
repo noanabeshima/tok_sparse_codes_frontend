@@ -1,5 +1,6 @@
 import './App.css'
 import { AtomComponent, CodeComponent } from './Components.jsx'
+import SearchBar from './SearchBar.jsx'
 
 import {
   BrowserRouter as Router,
@@ -10,10 +11,20 @@ import {
 } from 'react-router-dom';
 
 
+
+function Index() {
+  return (
+    <>
+      <SearchBar/>
+    </>
+  );
+}
+
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Index />} />
         <Route path="/code/:codeString" element={<CodeComponentWrapper />} />
         <Route path="/atom/:id" element={<AtomComponentWrapper />} />
       </Routes>
