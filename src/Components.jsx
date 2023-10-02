@@ -79,7 +79,7 @@ function CodeComponent({codeStringCandidate=' hello'}) {
 
     return (
         <div style={{width: '100%', textAlign: 'left'}}>
-        <SearchBar/>
+        {/* <SearchBar/> */}
         
             <h2 style={{'textAlign': 'left'}}>"{codeStr}"</h2>
             {codeData.map((tuple, idx) => {
