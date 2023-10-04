@@ -55,7 +55,7 @@ function AtomComponent({atom_idx, atom_weight=false}) {
 function CodeComponent({codeStringCandidate=' hello'}) {
     const [codeStr, setCodeStr] = useState(codeStringCandidate)
     const [codeIdx, setCodeIdx] = useState('')
-    const [codeData, setCodeData] = useState([{atom: '', weight: 255.}])
+    const [codeData, setCodeData] = useState([])
 
     useEffect(() => {
         const apiURL = "https://tok-embed-nnmf-api-489e56c40ef7.herokuapp.com/code_str/"+codeStr
